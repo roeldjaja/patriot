@@ -10,8 +10,10 @@ class MissileLauncher:
     def __init__(self):
         return 
     
-    # Launch missile
+    
     def launch_missile(self, enemy):
+        
+        # Launch if enemy detected
         if enemy == 1 :
             print('Missile launched')
             if 0.8 < random.random():
@@ -26,22 +28,19 @@ class IFF:
     
     """
     def __init__(self):
-        return
-
-    # # Convert binary to decimal
-    # def binaryToDecimal(self, n):
-    #     return int(str(n),2)    
+        return  
     
-    # Identify foe
+    
     def find_foe(self, radarlist):
+        
         # convert binary to decimal
         radarlistdecimal = list(map(lambda n: int(str(n),2), radarlist))
-      
-        print(radarlist);print(radarlistdecimal)
+        
         # Count even and odd numbers
         odd_count = len(list(filter(lambda x: (x%2 != 0) , radarlistdecimal)))
         even_count = len(list(filter(lambda x: (x%2 == 0) , radarlistdecimal)))
         
+        # Compare even and odd counts
         if even_count < odd_count:
             Foe = 1 ; print("Enemy identified")
         else: Foe = 0 ; print("No Enemy identified\n")
@@ -56,7 +55,8 @@ class Radar:
     def __init__(self, file='Radar-output.csv'):
         self.active = False
         self.index = 0
-
+        
+        # Generate list from csv
         self.targets = []
         with open(file) as csvfile:
             reader = csv.reader(csvfile, delimiter=';')
@@ -70,6 +70,7 @@ class Radar:
     def deactivate(self):
         self.active = False
     
+    # Select first row from targets list
     def detect(self):
         time.sleep(1)
         try: 

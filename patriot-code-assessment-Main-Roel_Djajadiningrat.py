@@ -16,17 +16,16 @@ def main():
 
     while radar.active:
         
-        # list from Radar
+        # Get signal from Radar
         signal = radar.detect()
         
-        if signal == None:
-            return
+        if signal:
      
-        # Find enemy
-        enemy = iff.find_foe(signal)
-        
-        # Launch Missile
-        launcher.launch_missile(enemy)
+            # Find enemy
+            enemy = iff.find_foe(signal)
+            
+            # Launch Missile
+            launcher.launch_missile(enemy)
 
 main()
 
